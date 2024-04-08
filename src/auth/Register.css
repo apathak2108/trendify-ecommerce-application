@@ -1,0 +1,62 @@
+.register__page__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__card {
+  height: 400px;
+  width: 300px;
+  border: 1px none grey;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+h3 {
+  font-family: cursive;
+  margin-top: 30px;
+}
+
+.register__email__address,
+.register__phone__number,
+.register__password,
+.register__confirm__password {
+  height: 30px;
+  border: none;
+  margin-top: 20px;
+  width: 210px;
+  font-weight: bold;
+  text-indent: 6px;
+  border-radius: 3px;
+}
+
+.register__email__address {
+    margin-top: 12px;
+}
+
+.register__button {
+  width: 210px;
+  height: 30px;
+  margin-top: 30px;
+  border: none;
+  background: #5f9ea0;
+  font-weight: bold;
+  color: white;
+  border-radius: 3px;
+}
+
+.register__button:hover {
+  cursor: pointer;
+  background-color: #296a6d;
+}
+
+p {
+  margin-top: 30px;
+  font-size: 12px;
+  text-align: center;
+}
