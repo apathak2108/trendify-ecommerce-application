@@ -1,4 +1,4 @@
-.login__page__container {
+.login-page-container {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.login__card {
+.login-card {
     height: 340px;
     width: 300px;
     border: 1px none grey;
@@ -22,7 +22,7 @@ h3 {
     margin-top: 30px;
 }
 
-.login__email__address {
+.login-email-address {
     height: 30px;
     border: none;
     margin-top: 12px;
@@ -32,7 +32,7 @@ h3 {
     border-radius: 3px;
 }
 
-.login__password {
+.login-password {
     height: 30px;
     border: none;
     margin-top: 30px;
@@ -42,7 +42,7 @@ h3 {
     text-indent: 6px;
 }
 
-.login__button {
+.login-button {
     width: 210px;
     height: 30px;
     margin-top: 30px;
@@ -53,7 +53,7 @@ h3 {
     border-radius: 3px;
 }
 
-.login__button:hover {
+.login-button:hover {
     cursor: pointer;
     background-color: #296A6D;
 }

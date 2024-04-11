@@ -1,11 +1,20 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 
+const NotFound = () => <h1>Page Not found </h1>;
+
 const App = () => {
-  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+  const loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
+  const loginTime = JSON.parse(localStorage.getItem("loginTime"));
+  const twentyFourHours = 24 * 60 * 60 * 1000;
+  if (loginStatus && Date.now() - loginTime > twentyFourHours) {
+    localStorage.removeItem("loginStatus");
+    localStorage.removeItem("loginTime");
+    window.location.reload();
+  }
 
   return (
     <>
@@ -14,16 +23,30 @@ const App = () => {
           <Route
             path="/"
             element={
-              isLoggedIn ? (
-                <Navigate replace to="/home" />
+              loginStatus ? (
+                <Navigate to="/home" />
               ) : (
-                <Navigate replace to="/auth/login" />
+                <Navigate to="/auth/login" />
               )
             }
           />
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+              loginStatus ? (
+                <Home />
+              ) : (
+                <Navigate to="/auth/login" />
+              )
+            }
+          />
           <Route path="/auth/register" element={<Register />} />
-          <Route path="/auth/login" element={<Login />} />
+          <Route
+            path="/auth/login"
+            element={<Login />}
+          />
+          <Route path="*" element={<Navigate to="/404" />} />
+          <Route path="/404" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
