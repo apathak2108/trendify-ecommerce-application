@@ -1,0 +1,59 @@
+.item-card {
+  height: 359px;
+  background-color: white;
+  margin: 10px;
+  width: 210px;
+}
+
+.item-image {
+  height: 280px;
+  width: 210px;
+}
+
+.item-info {
+  height: 78px;
+  width: 210px;
+  display: flex;
+  flex-flow: column;
+  text-indent: 2px;
+}
+
+.item-info-product-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.item-info-product-info {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.item-info-price {
+    line-height: 26px;
+}
+
+.item-info-price-discounted-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #282c3f;
+}
+
+.item-info-price-strike-price {
+  text-decoration: line-through;
+  color: #7e818c;
+  font-weight: 400;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.item-info-price-discounted-percentage {
+  color: #ff905a;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 5px;
+}

@@ -1,11 +1,22 @@
-import React from 'react'
+import React from "react";
+import './Home.css';
+import { Button } from "../components/Button";
+import { ItemList } from "./ItemList";
 
-const Home = () => {
+export const Home = () => {
+  
+  const handleLogout = ()=>{
+  localStorage.removeItem("loginStatus");
+  window.location.href= "/";
+};
+
+
   return (
-    <div >
-        <h1>Bana diye bhaiya 😁</h1>
+    <div className="main-container">  
+       <div className="item-list-container">
+         <ItemList />
+         
+       </div>
     </div>
-  )
-}
-
-export default Home
+  );
+};

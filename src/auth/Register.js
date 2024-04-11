@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./Register.css";
 import { InputField } from "../components/InputField";
 import { Button } from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+
   const [credentials, setCredentials] = useState({
     email: "",
     mobile: null,
@@ -11,6 +13,7 @@ export const Register = () => {
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
   const handleInputChange = (name, value) => {
     setCredentials({
       ...credentials,
@@ -33,7 +36,7 @@ export const Register = () => {
       /^(?=.*[0-9].*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{10,}$/;
     if (!passwordRegex.test(credentials.password)) {
       alert(
-        "Password must follow following standards : 1. Minimum two numeric character 2. Atleast one special character 3. Length should be of atleast 10 characters"
+        "Password must follow following standards : 1. Minimum two numeric characters 2. Atleast one special character 3. Length should be of atleast 10 characters"
       );
       return;
     }
@@ -58,26 +61,28 @@ export const Register = () => {
       password: "",
       confirmPassword: "",
     });
+    navigate("/auth/login");
   };
 
   return (
-    <div className="register__page__container">
-      <div className="register__card">
+    <div className="register-page-container">
+      <div className="register-card">
         <h3>Register</h3>
         <form onSubmit={handleRegistrationSubmit}>
           <InputField
             name="email"
             placeholder="Email Address*"
-            className="register__email__address"
+            className="register-email-address"
             value={credentials.email}
             onChange={(value) => handleInputChange("email", value)}
             type="email"
           />
           <InputField
             name="mobile"
-            type="number"
+            type="tel"
             placeholder="Phone Number*"
-            className="register__phone__number"
+            className="register-phone-number"
+            maxLength={10}
             value={credentials.mobile}
             onChange={(value) => handleInputChange("mobile", value)}
           />
@@ -85,7 +90,7 @@ export const Register = () => {
             name="password"
             type="password"
             placeholder="Password*"
-            className="register__password"
+            className="register-password"
             value={credentials.password}
             onChange={(value) => handleInputChange("password", value)}
           />
@@ -93,11 +98,11 @@ export const Register = () => {
             name="confirmPassword"
             type="password"
             placeholder="Confirm Password*"
-            className="register__confirm__password"
+            className="register-confirm-password"
             value={credentials.confirmPassword}
             onChange={(value) => handleInputChange("confirmPassword", value)}
           />
-          <Button name="Register" className="register__button" />
+          <Button name="Register" className="register-button" />
           <p>
             Already have an account?<a href="/auth/login">Login</a>
           </p>
