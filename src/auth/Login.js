@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { InputField } from "../components/InputField";
 import { Button } from "../components/Button";
+import { Link } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
+import { IoNavigate } from "react-icons/io5";
 
 export const Login = () => {
-
- 
+ const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -33,7 +35,7 @@ export const Login = () => {
       setLoginStatus(true);
       localStorage.setItem("loginStatus", true);
       localStorage.setItem("loginTime", Date.now());
-      window.location.href = "/home";
+      window.location.href = '/home';
     } else {
       alert("Invalid email or password");
     }
@@ -61,7 +63,7 @@ export const Login = () => {
           />
           <Button name="Login" className="login-button" />
           <p>
-            Don't have an account?<a href="/auth/register">Register</a>
+            Don't have an account?<Link to='/auth/register'>Register</Link>
           </p>
         </form>
       </div>

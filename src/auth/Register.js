@@ -3,6 +3,7 @@ import "./Register.css";
 import { InputField } from "../components/InputField";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Register = () => {
 
@@ -104,7 +105,7 @@ export const Register = () => {
           />
           <Button name="Register" className="register-button" />
           <p>
-            Already have an account?<a href="/auth/login">Login</a>
+            Already have an account?<Link to='/auth/login'>Login</Link>
           </p>
         </form>
       </div>
