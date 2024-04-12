@@ -8,9 +8,11 @@ export const ItemCard = ({
   discountedPrice,
   originalPrice,
   discountedPercentage,
+  className,
+  onClick
 }) => {
   return (
-    <div className="item-card">
+    <div className={`item-card ${className}`} onClick={onClick}>
       <img className="item-image" src={imageURL} alt={productName} />
       <div className="item-info">
         <div className="item-info-product-name">{productName}</div>

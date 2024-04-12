@@ -1,21 +1,28 @@
 .main-container {
   height: 98vh;
   width: 99vw;
-  border: 3px solid red;
   display: flex;
-  background-color: lightgrey;
   justify-content: center;
+  flex-flow: column;
   align-items: end;
   overflow: hidden;
 }
 
 .item-list-container {
   height: 85vh;
-  width: 95vw;
-  border: 3px solid black;
+  width: 98vw;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: flex-start;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  column-gap: 100px;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+  .item-list-container {
+    justify-content: center;
+    column-gap: 1px;
+    row-gap: 1px;
+  }
 }
