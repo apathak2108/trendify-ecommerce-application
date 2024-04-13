@@ -2,6 +2,7 @@ import React from "react";
 import "./ItemCard.css";
 
 export const ItemCard = ({
+  itemID,
   imageURL,
   productName,
   productDescription,
@@ -12,7 +13,7 @@ export const ItemCard = ({
   onClick
 }) => {
   return (
-    <div className={`item-card ${className}`} onClick={onClick}>
+    <div itemID={itemID} className={`item-card ${className}`} onClick={onClick}>
       <img className="item-image" src={imageURL} alt={productName} />
       <div className="item-info">
         <div className="item-info-product-name">{productName}</div>
