@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
-
-const NotFound = () => <h1>Page Not found </h1>;
+import { ItemDetails } from "./components/ItemDetails";
+import NotFound from "./pages/notFound";
 
 const App = () => {
   const loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
@@ -32,21 +32,18 @@ const App = () => {
           />
           <Route
             path="/home"
-            element={
-              loginStatus ? (
-                <Home />
-              ) : (
-                <Navigate to="/auth/login" />
-              )
-            }
+            element={loginStatus ? <Home /> : <Navigate to="/auth/login" />}
           />
           <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/login" element={<Login />} />
           <Route
-            path="/auth/login"
-            element={<Login />}
+            path="/items/:itemID"
+            element={
+              loginStatus ? <ItemDetails /> : <Navigate to="/auth/login" />
+            }
           />
-          <Route path="*" element={<Navigate to="/404" />} />
-          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+          {/* <Route path="/404" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>
     </>
