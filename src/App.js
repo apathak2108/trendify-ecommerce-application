@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Login } from "./auth/Login";
-import { Register } from "./auth/Register";
-import { ItemDetails } from "./components/ItemDetails";
+import Home from "./pages/home";
+import Login from "./auth/login";
+import Register from "./auth/register"
+import ItemDetails from "./components/itemDetails"
 import NotFound from "./pages/notFound";
 
 const App = () => {
@@ -43,7 +43,6 @@ const App = () => {
             }
           />
           <Route path="*" element={<NotFound />} />
-          {/* <Route path="/404" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>
     </>

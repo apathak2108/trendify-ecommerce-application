@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { InputField } from "../components/InputField";
-import { Button } from "../components/Button";
+import InputField from "../../components/inputField";
+import Button from "../../components/button";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
-  const navigate = useNavigate();
+const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -30,7 +28,6 @@ export const Login = () => {
         user.password === credentials.password
     );
     if (user) {
-      // alert("Loggedin successfully");
       setLoginStatus(true);
       localStorage.setItem("loginStatus", true);
       localStorage.setItem("loginTime", Date.now());
@@ -49,8 +46,8 @@ export const Login = () => {
             <InputField
               name="email"
               placeholder="Email / Phone"
-              className="login-email-address"
               value={credentials.email}
+              className="login-email-address"
               onChange={(value) => handleInputChange("email", value)}
             />
             <InputField
@@ -71,3 +68,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;

@@ -1,10 +1,10 @@
 import React from "react";
-import HeaderLogo from "../images/trendify-logo.png";
+import HeaderLogo from "../../images/trendify-logo.png"
 import { useNavigate } from "react-router-dom";
-import { Button } from "./Button";
+import Button from "../button";
 import "./Header.css";
 
-export const Header = () => {
+const Header = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("loginStatus");
@@ -17,3 +17,5 @@ export const Header = () => {
     </div>
   );
 };
+
+export default Header;

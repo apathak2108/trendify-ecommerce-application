@@ -1,9 +1,9 @@
 import React from "react";
 import "./Home.css";
-import { ItemList } from "./ItemList";
-import { Header } from "../components/Header";
+import { ItemList } from "../itemList";
+import Header from "../../components/header";
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <Header />
@@ -15,3 +15,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
