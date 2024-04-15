@@ -1,7 +1,7 @@
 import React from "react";
 import "./ItemCard.css";
 
-export const ItemCard = ({
+const ItemCard = ({
   itemID,
   imageURL,
   productName,
@@ -35,3 +35,5 @@ export const ItemCard = ({
     </div>
   );
 };
+
+export default ItemCard;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export const InputField = ({
+const InputField = ({
   value,
   label,
   name,
@@ -55,3 +55,5 @@ export const InputField = ({
     </div>
   );
 };
+
+export default InputField;
