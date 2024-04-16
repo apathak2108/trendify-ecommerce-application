@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./auth/login";
 import Register from "./auth/register"
-import ItemDetails from "./components/itemDetails"
+import ItemDetails from "./components/itemDetails";
 import NotFound from "./pages/notFound";
 
 const App = () => {
