@@ -1,12 +1,25 @@
 .main-container {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
 }
 
 p {
-    margin-top: 2px;
+  margin-top: 2px;
+}
+
+.homepage-redirecting-button {
+  margin-top: 13px;
+  height: 38px;
+  width: 293px;
+  border: none;
+  background-color: #ff3f6c;
+  border-radius: 4px;
+  color: white;
+  font-size: medium;
+  font-weight: 700;
+  cursor: pointer;
 }

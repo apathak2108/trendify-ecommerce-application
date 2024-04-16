@@ -3,10 +3,10 @@ import "./Home.css";
 import { ItemList } from "../itemList";
 import Header from "../../components/header";
 
-const Home = () => {
+const Home = ({ cartCount }) => {
   return (
     <>
-      <Header />
+      <Header cartCount={cartCount} />
       <div className="home-main-container">
         <div className="item-list-container">
           <ItemList />

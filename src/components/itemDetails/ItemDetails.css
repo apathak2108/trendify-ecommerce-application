@@ -193,3 +193,29 @@ h4 {
     width: 98%;
   }
 }
+
+.selected {
+  color: #ff3f6c;
+  border-color: #ff3f6c;
+}
+
+.error-message {
+  color: #f16565;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+.size-buttons-container.shake {
+  animation: shake 0.3s;
+}

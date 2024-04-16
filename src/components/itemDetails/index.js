@@ -1,60 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemDetails.css";
 import Header from "../header";
 import Button from "../button";
+import { items } from "../../pages/itemList/itemsData";
+import { addItem, setSelectedSize } from "../../redux/action/cartAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const ItemDetails = () => {
+  const cartCount = useSelector((state) => state.cart.cartCount);
+  const selectedSize = useSelector((state) => state.size);
+  const dispatch = useDispatch();
   const { itemID } = useParams();
-  const getItemDetailsById = (id) => {
-    return {
-      itemID: id,
-      productImage: "ma",
-      productName: "Sample product",
-      productDescription: "Sample Description",
-      productDiscountedPrice: 25,
-      productOriginalPrice: 55,
-      productDiscountedPercentage: 5,
-      productMatetialAndCare: ["", ""],
-      productSpecifications: ["", "", "", "", ""],
-    };
-  };
-  const itemDetails = getItemDetailsById(itemID);
+  const selectedItem = items[itemID - 1];
+  const [errorMessage, setErrorMessage] = useState("");
+  const [animationTriggered, setAnimationTriggered] = useState(false);
 
+  const handleSelectSize = (size) => {
+    dispatch(setSelectedSize(size));
+    setErrorMessage("");
+  };
+  const handleAddItemToCart = () => {
+    if (selectedSize.selectedSize) {
+      dispatch(addItem());
+      setErrorMessage("");
+      setAnimationTriggered(false);
+    } else {
+      setErrorMessage("Please select a size");
+      setAnimationTriggered(true);
+    }
+  };
   return (
     <>
       <Header />
-
       <div className="product-image-and-description-container">
         <div className="product-image-container">
-          <img
-            className="product-image"
-            src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/23158876/2023/10/4/ba6838bf-93c1-47d0-8948-790b3727f5711696415342531-anayna--Anarkali-Pure-Cotton-Kurta-With-Trousers--Dupatta-45-12.jpg"
-          ></img>
+          <img className="product-image" src={selectedItem.imageURL} />
         </div>
         <div className="product-description-container">
           <div className="product-details-container">
-            <h1>KALANI</h1>
-            <h2>Kurta With Duppatta and Lehanga</h2>
+            <h1>{selectedItem.productName}</h1>
+            <h2>{selectedItem.productDescription}</h2>
             <div className="product-price-container">
-              <strong>₹ 1690</strong>
+              <strong>₹ {selectedItem.discountedPrice}</strong>
               <span className="original-price">
-                MRP <s>₹ 4890</s>
+                MRP <s>₹ {selectedItem.originalPrice}</s>
               </span>
-              <span className="discounted-percentage">(67% OFF)</span>
+              <span className="discounted-percentage">
+                ({selectedItem.discountedPercentage}% OFF)
+              </span>
             </div>
             <p className="tax-statement">inclusive of all taxes</p>
             <h4>SELECT SIZE</h4>
-            <div className="size-buttons-container">
-              <Button className="size-button" name="S" />
-              <Button className="size-button" name="M" />
-              <Button className="size-button" name="L" />
-              <Button className="size-button" name="XL" />
-              <Button className="size-button" name="XXL" />
+            {errorMessage && (
+              <span className="error-message">{errorMessage}</span>
+            )}
+            <div className={`size-buttons-container ${animationTriggered ? "shake" : ""}`}>
+              <Button
+                className={`size-button ${
+                  selectedSize.selectedSize === "S" ? "selected" : ""
+                }`}
+                name="S"
+                onClick={() => handleSelectSize("S")}
+              />
+              <Button
+                className={`size-button ${
+                  selectedSize.selectedSize === "M" ? "selected" : ""
+                }`}
+                name="M"
+                onClick={() => handleSelectSize("M")}
+              />
+              <Button
+                className={`size-button ${
+                  selectedSize.selectedSize === "L" ? "selected" : ""
+                }`}
+                name="L"
+                onClick={() => handleSelectSize("L")}
+              />
+              <Button
+                className={`size-button ${
+                  selectedSize.selectedSize === "XL" ? "selected" : ""
+                }`}
+                name="XL"
+                onClick={() => handleSelectSize("XL")}
+              />
+              <Button
+                className={`size-button ${
+                  selectedSize.selectedSize === "XXL" ? "selected" : ""
+                }`}
+                name="XXL"
+                onClick={() => handleSelectSize("XXL")}
+              />
             </div>
-            <div className="cart-button">ADD TO CART</div>
+            <div className="cart-button" onClick={handleAddItemToCart}>
+              ADD TO CART
+            </div>
             <hr />
-            
+
             <div className="best-offers-container">
               <h4>BEST OFFERS 🏷️</h4>
               <ul>
@@ -71,7 +113,6 @@ const ItemDetails = () => {
               </ul>
             </div>
           </div>
-          
         </div>
         <div className="product-specs-container">
           <h4>PRODUCT DETAILS 📝</h4>
@@ -88,7 +129,6 @@ const ItemDetails = () => {
           <h5>Material & Core</h5>
           <p>Pure Cotton</p>
           <p>Machine Wash</p>
-
         </div>
       </div>
     </>
@@ -96,7 +136,3 @@ const ItemDetails = () => {
 };
 
 export default ItemDetails;
-// <h1>Item Details</h1>
-//       <p>Item ID: {itemDetails.itemID}</p>
-//       <p>Product Name: {itemDetails.productName}</p>
-//       <p>Product Description: {itemDetails.productDescription}</p>
