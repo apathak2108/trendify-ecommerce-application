@@ -28,7 +28,7 @@ const Header = () => {
         ></img>
       </div>
       <div className="header-right-portion">
-        <img src={CartIcon} className="cart-icon" alt="Cart"></img>
+        <img src={CartIcon} className="cart-icon" alt="Cart" onClick={() => navigate('/checkout')} />
         {cartCount !== 0 && (
           <span className="cart-checkout-items-value">{cartCount}</span>
          )}
