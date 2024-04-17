@@ -1,0 +1,26 @@
+.remove-item-buttons-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+
+}
+
+.remove-yes-btn {
+    border: none;
+    color: gray;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.remove-no-btn {
+    border: none;
+    color: #ff3f6c;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.vertial-line-bw-btn {
+    color: lightgrey;
+}

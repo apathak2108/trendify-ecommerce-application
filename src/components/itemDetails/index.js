@@ -55,43 +55,23 @@ const ItemDetails = () => {
             {errorMessage && (
               <span className="error-message">{errorMessage}</span>
             )}
-            <div className={`size-buttons-container ${animationTriggered ? "shake" : ""}`}>
-              <Button
-                className={`size-button ${
-                  selectedSize.selectedSize === "S" ? "selected" : ""
-                }`}
-                name="S"
-                onClick={() => handleSelectSize("S")}
-              />
-              <Button
-                className={`size-button ${
-                  selectedSize.selectedSize === "M" ? "selected" : ""
-                }`}
-                name="M"
-                onClick={() => handleSelectSize("M")}
-              />
-              <Button
-                className={`size-button ${
-                  selectedSize.selectedSize === "L" ? "selected" : ""
-                }`}
-                name="L"
-                onClick={() => handleSelectSize("L")}
-              />
-              <Button
-                className={`size-button ${
-                  selectedSize.selectedSize === "XL" ? "selected" : ""
-                }`}
-                name="XL"
-                onClick={() => handleSelectSize("XL")}
-              />
-              <Button
-                className={`size-button ${
-                  selectedSize.selectedSize === "XXL" ? "selected" : ""
-                }`}
-                name="XXL"
-                onClick={() => handleSelectSize("XXL")}
-              />
+            <div
+              className={`size-buttons-container ${
+                animationTriggered ? "shake" : ""
+              }`}
+            >
+              {["S", "M", "L", "XL", "XXL"].map((size) => (
+                <Button
+                  key={size}
+                  className={`size-button ${
+                    selectedSize.selectedSize === size ? "selected" : ""
+                  }`}
+                  name={size}
+                  onClick={() => handleSelectSize(size)}
+                />
+              ))}
             </div>
+
             <div className="cart-button" onClick={handleAddItemToCart}>
               ADD TO CART
             </div>

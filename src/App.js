@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./auth/login";
-import Register from "./auth/register"
+import Register from "./auth/register";
 import ItemDetails from "./components/itemDetails";
 import NotFound from "./pages/notFound";
+import CheckoutItem from "./components/checkoutItem";
 
 const App = () => {
   const loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
@@ -42,6 +43,7 @@ const App = () => {
               loginStatus ? <ItemDetails /> : <Navigate to="/auth/login" />
             }
           />
+          <Route path="/checkout" element={<CheckoutItem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
