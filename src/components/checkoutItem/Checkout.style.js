@@ -12,6 +12,13 @@ export const CardContainerDiv = styled.div`
   width: 95%;
   height: 95%;
   overflow: scroll;
+
+  @media only screen and (min-width: 360px) and (max-width: 768px) {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 export const CheckoutCardDiv = styled.div`
@@ -23,10 +30,12 @@ export const CheckoutCardDiv = styled.div`
   margin-top: 15px;
   margin-left: 15px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   column-gap: 7px;
   margin-left: 5%;
+
+  @media only screen and (min-width: 360px) and (max-width: 768px) {
+    width: fit-content;
 `;
 
 export const ImageDiv = styled.div`
@@ -60,6 +69,11 @@ export const SizeButton = styled.button`
   color: #282c3f;
   width: 50px;
   height: 50px;
+
+  &:hover {
+    border-color: #ff3f6c;
+    color: #ff3f6c;
+  }
 `;
 
 export const PopupWindowDiv = styled.div`

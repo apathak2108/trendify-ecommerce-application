@@ -6,28 +6,34 @@ import Button from "../button";
 import { items } from "../../pages/itemList/itemsData";
 import { addItem, setSelectedSize } from "../../redux/action/cartAction";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  setIsAnimationTriggered,
+  setErrorMessage,
+} from "../../redux/action/itemDetailsAction";
 
 const ItemDetails = () => {
-  const cartCount = useSelector((state) => state.cart.cartCount);
-  const selectedSize = useSelector((state) => state.size);
+  const cartCount = useSelector((state) => state?.cart?.cartCount);
+  const selectedSize = useSelector((state) => state?.size);
+  const animationTriggered = useSelector(
+    (state) => state?.animation?.animationTriggered
+  );
+  const errorMessage = useSelector((state) => state?.errMsg?.errorMsg);
   const dispatch = useDispatch();
   const { itemID } = useParams();
   const selectedItem = items[itemID - 1];
-  const [errorMessage, setErrorMessage] = useState("");
-  const [animationTriggered, setAnimationTriggered] = useState(false);
 
   const handleSelectSize = (size) => {
     dispatch(setSelectedSize(size));
-    setErrorMessage("");
+    dispatch(setErrorMessage(""));
   };
   const handleAddItemToCart = () => {
     if (selectedSize.selectedSize) {
       dispatch(addItem());
-      setErrorMessage("");
-      setAnimationTriggered(false);
+      dispatch(setErrorMessage(""));
+      // dispatch(!setIsAnimationTriggered());
     } else {
-      setErrorMessage("Please select a size");
-      setAnimationTriggered(true);
+      dispatch(setErrorMessage("Please select a size"));
+      dispatch(setIsAnimationTriggered());
     }
   };
   return (
