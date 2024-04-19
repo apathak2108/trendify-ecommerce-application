@@ -9,10 +9,16 @@ import {
   SizeButton,
   PopupWindowDiv,
 } from "./Checkout.style";
+import {
+  handleDeleteCartItemPopup,
+  setSelectedQuantityOfItem,
+  showQuantitySelectorPopup,
+} from "../../redux/action/cartAction";
 import "./Checkout.css";
 import Header from "../header";
 import Button from "../button";
 import CloseIcon from "../../images/close.png";
+import { useDispatch, useSelector } from "react-redux";
 
 const QuantitySelector = ({ onSelectQuantity }) => {
   const selectQuantity = (quantity) => {
@@ -35,7 +41,9 @@ const QuantitySelector = ({ onSelectQuantity }) => {
             key={quantity}
             name={`Qty: ${quantity}`}
             onClick={() => selectQuantity(quantity)}
-          />
+          >
+            {quantity}
+          </SizeButton>
         ))}
       </div>
     </PopupWindowDiv>
@@ -43,31 +51,32 @@ const QuantitySelector = ({ onSelectQuantity }) => {
 };
 
 const CheckoutItem = () => {
-  const [showQuantitySelector, setShowQuantitySelector] = useState(false);
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const [isClosePopup, setIsClosePopup] = useState(false);
-
+  const dispatch = useDispatch();
+  const openDeleteItemPopup = useSelector(
+    (state) => state?.deleteItemPopup?.isDeleteCartItemPopup
+  );
+  const selectedQuantity = useSelector(
+    (state) => state?.selectedQuantity?.selectedQuantity
+  );
+  const selectedSize = useSelector((state) => state?.size?.selectedSize);
+  const showQuantitySelector = useSelector(
+    (state) => state?.quantitySelectorPopup?.isQuantitySelectorPopup
+  );
   const toggleQuantitySelector = () => {
-    setShowQuantitySelector(!showQuantitySelector);
+    dispatch(showQuantitySelectorPopup());
   };
 
   const handleSelectQuantity = (quantity) => {
-    setSelectedQuantity(quantity);
+    dispatch(setSelectedQuantityOfItem(quantity));
     toggleQuantitySelector();
   };
-
-  const handleRemoveItemPopup = () => {
-    setIsClosePopup(true);
-  };
-
-  const arr = [1, 2, 3, 4, 5];
 
   return (
     <>
       <Header />
       <MainDiv>
         <CardContainerDiv>
-          {arr.map((item, index) => (
+          {[1, 2, 3, 4, 5].map(() => (
             <CheckoutCardDiv>
               <ImageDiv>
                 <img
@@ -94,7 +103,9 @@ const CheckoutItem = () => {
                     name={`Qty: ${selectedQuantity} ▼`}
                     onClick={toggleQuantitySelector}
                   />
-                  <span style={{ marginLeft: "10px" }}>Size: M</span>
+                  <span style={{ marginLeft: "10px" }}>
+                    Size: {selectedSize}
+                  </span>
                 </CheckoutCardButtonsDiv>
                 <div
                   className="product-price-container"
@@ -126,7 +137,7 @@ const CheckoutItem = () => {
                   right: "10px",
                   cursor: "pointer",
                 }}
-                onClick={handleRemoveItemPopup}
+                onClick={() => dispatch(handleDeleteCartItemPopup())}
               />
             </CheckoutCardDiv>
           ))}
@@ -146,7 +157,7 @@ const CheckoutItem = () => {
             <QuantitySelector onSelectQuantity={handleSelectQuantity} />
           </div>
         )}
-        {isClosePopup && (
+        {openDeleteItemPopup && (
           <div
             style={{
               position: "fixed",
@@ -155,25 +166,26 @@ const CheckoutItem = () => {
               transform: "translate(-50%, -50%)",
               backgroundColor: "#fff",
               padding: "20px",
-              height: "10%",
-              width: "20%",
+              height: "80px",
+              width: "270px",
               border: "1px solid #ccc",
-
             }}
           >
-            <span className="remove-item-confirmation-text">Are you sure you want to remove this item from cart ?</span>
+            <span className="remove-item-confirmation-text">
+              Are you sure you want to remove this item from cart ?
+            </span>
             <hr />
             <div className="remove-item-buttons-div">
               <Button
                 name="Yes, Remove it"
                 className="remove-yes-btn"
-                onClick={() => setIsClosePopup(false)}
+                onClick={() => dispatch(handleDeleteCartItemPopup())}
               />
               <span className="vertial-line-bw-btn">|</span>
               <Button
                 name="No, Back to Cart"
                 className="remove-no-btn"
-                onClick={() => setIsClosePopup(false)}
+                onClick={() => dispatch(handleDeleteCartItemPopup())}
               />
             </div>
           </div>
