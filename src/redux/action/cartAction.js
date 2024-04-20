@@ -1,8 +1,10 @@
-import { ADD_ITEM } from "./actionTypes";
-import { SELECTED_SIZE } from "./actionTypes";
-import { DELETE_CART_ITEM_POPUP } from "./actionTypes";
-import { SELECTED_QUANTITY_OF_ITEM } from "./actionTypes";
-import { SHOW_QUANTITY_SELECTOR_POPUP } from "./actionTypes";
+import {
+  ADD_ITEM,
+  SELECTED_SIZE,
+  DELETE_CART_ITEM_POPUP,
+  SELECTED_QUANTITY_OF_ITEM,
+  SHOW_QUANTITY_SELECTOR_POPUP,
+} from "./actionTypes";
 
 export const addItem = () => {
   return {

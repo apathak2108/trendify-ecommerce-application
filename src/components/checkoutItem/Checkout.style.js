@@ -8,6 +8,19 @@ export const MainDiv = styled.div`
   align-items: flex-end;
 `;
 
+export const MainDivForEmptyCart = styled.div`
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 270px;
+  width: 400px;
+  display: flex;
+  flex-flow: column;
+  justifly-content: center;
+  align-items: center;
+`;
+
 export const CardContainerDiv = styled.div`
   width: 95%;
   height: 95%;
@@ -82,4 +95,26 @@ export const PopupWindowDiv = styled.div`
   width: 300px;
   flex-wrap: wrap;
   flex-flow: column;
+`;
+
+export const ShowQuantitySelectorDiv = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+`;
+
+export const DeleteItemPopupDiv = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  height: 80px;
+  width: 270px;
+  border: 1px solid #ccc;
 `;

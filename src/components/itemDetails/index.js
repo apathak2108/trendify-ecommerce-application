@@ -1,36 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemDetails.css";
 import Header from "../header";
 import Button from "../button";
+import { useNavigate } from "react-router-dom";
 import { items } from "../../pages/itemList/itemsData";
 import { addItem, setSelectedSize } from "../../redux/action/cartAction";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setIsAnimationTriggered,
   setErrorMessage,
+  setNumberOfItems,
 } from "../../redux/action/itemDetailsAction";
 
 const ItemDetails = () => {
-  const cartCount = useSelector((state) => state?.cart?.cartCount);
-  const selectedSize = useSelector((state) => state?.size);
+  const [count, setCount] = useState(0);
+  const navigate = useNavigate();
+  const selectedSize = useSelector((state) => state?.size?.selectedSize);
   const animationTriggered = useSelector(
     (state) => state?.animation?.animationTriggered
   );
-  const errorMessage = useSelector((state) => state?.errMsg?.errorMsg);
+  const errorMessage = useSelector((state) => state?.errMsg?.errorMessage);
   const dispatch = useDispatch();
   const { itemID } = useParams();
   const selectedItem = items[itemID - 1];
-
+  const mySet = useSelector(
+    (state) => state?.cartItems?.numberOfCartItemsArray
+  );
   const handleSelectSize = (size) => {
     dispatch(setSelectedSize(size));
     dispatch(setErrorMessage(""));
   };
   const handleAddItemToCart = () => {
-    if (selectedSize.selectedSize) {
-      dispatch(addItem());
+    if (selectedSize) {
+      setCount(count + 1);
       dispatch(setErrorMessage(""));
-      // dispatch(!setIsAnimationTriggered());
+      dispatch(setNumberOfItems(itemID));
     } else {
       dispatch(setErrorMessage("Please select a size"));
       dispatch(setIsAnimationTriggered());
@@ -70,7 +75,7 @@ const ItemDetails = () => {
                 <Button
                   key={size}
                   className={`size-button ${
-                    selectedSize.selectedSize === size ? "selected" : ""
+                    selectedSize === size ? "selected" : ""
                   }`}
                   name={size}
                   onClick={() => handleSelectSize(size)}

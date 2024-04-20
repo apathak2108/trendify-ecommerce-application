@@ -1,8 +1,13 @@
-import { IS_ANIMATION_TRIGGERED, ERROR_MESSAGE } from "../action/actionTypes";
+import {
+  IS_ANIMATION_TRIGGERED,
+  ERROR_MESSAGE,
+  NUMBER_OF_CART_ITEMS,
+} from "../action/actionTypes";
 
 const initialState = {
   animationTriggered: false,
-  errorMsg: "",
+  errorMessage: "",
+  numberOfCartItemsArray: new Set(),
 };
 
 export const isAnimationTriggeredReducer = (state = initialState, action) => {
@@ -22,9 +27,25 @@ export const errorMessageReducer = (state = initialState, action) => {
     case ERROR_MESSAGE:
       return {
         ...state,
-        errorMsg: action.payload,
+        errorMessage: action.payload,
       };
     default:
       return state;
+  }
+};
+
+export const numberOfCartItemsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case NUMBER_OF_CART_ITEMS:
+      return {
+
+        ...state,
+        numberOfCartItemsArray: state.numberOfCartItemsArray.add(
+          action.payload
+        )
+
+      };
+    default:
+        return state;
   }
 };

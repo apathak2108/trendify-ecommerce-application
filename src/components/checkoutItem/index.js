@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   MainDiv,
   CardContainerDiv,
@@ -8,6 +8,9 @@ import {
   CheckoutCardButtonsDiv,
   SizeButton,
   PopupWindowDiv,
+  ShowQuantitySelectorDiv,
+  MainDivForEmptyCart,
+  DeleteItemPopupDiv,
 } from "./Checkout.style";
 import {
   handleDeleteCartItemPopup,
@@ -19,6 +22,8 @@ import Header from "../header";
 import Button from "../button";
 import CloseIcon from "../../images/close.png";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import EmptyCartImage from "../../images/emptyCartImg.png";
 
 const QuantitySelector = ({ onSelectQuantity }) => {
   const selectQuantity = (quantity) => {
@@ -52,6 +57,19 @@ const QuantitySelector = ({ onSelectQuantity }) => {
 
 const CheckoutItem = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const mySet = useSelector(
+    (state) => state?.cartItems?.numberOfCartItemsArray
+  );
+  const mySetArray = [...mySet];
+  const mySetArrayStateFun = () => {
+    if (mySetArray.length > 0) {
+      return true;
+    }
+    return false;
+  };
+  let mySetArrayState = mySetArrayStateFun();
+
   const openDeleteItemPopup = useSelector(
     (state) => state?.deleteItemPopup?.isDeleteCartItemPopup
   );
@@ -76,8 +94,8 @@ const CheckoutItem = () => {
       <Header />
       <MainDiv>
         <CardContainerDiv>
-          {[1, 2, 3, 4, 5].map(() => (
-            <CheckoutCardDiv>
+          {mySetArray.map((index) => (
+            <CheckoutCardDiv key={index}>
               <ImageDiv>
                 <img
                   src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/23158876/2023/10/4/ba6838bf-93c1-47d0-8948-790b3727f5711696415342531-anayna--Anarkali-Pure-Cotton-Kurta-With-Trousers--Dupatta-45-12.jpg"
@@ -143,34 +161,12 @@ const CheckoutItem = () => {
           ))}
         </CardContainerDiv>
         {showQuantitySelector && (
-          <div
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "#fff",
-              padding: "20px",
-              border: "1px solid #ccc",
-            }}
-          >
+          <ShowQuantitySelectorDiv>
             <QuantitySelector onSelectQuantity={handleSelectQuantity} />
-          </div>
+          </ShowQuantitySelectorDiv>
         )}
         {openDeleteItemPopup && (
-          <div
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "#fff",
-              padding: "20px",
-              height: "80px",
-              width: "270px",
-              border: "1px solid #ccc",
-            }}
-          >
+          <DeleteItemPopupDiv>
             <span className="remove-item-confirmation-text">
               Are you sure you want to remove this item from cart ?
             </span>
@@ -188,7 +184,21 @@ const CheckoutItem = () => {
                 onClick={() => dispatch(handleDeleteCartItemPopup())}
               />
             </div>
-          </div>
+          </DeleteItemPopupDiv>
+        )}
+        {!mySetArrayState && (
+          <MainDivForEmptyCart>
+            <img src={EmptyCartImage} style={{ height: "100%" }}></img>
+            <h3 style={{ marginBottom: "5px" }}>Hey, it feels so light!</h3>
+            <span style={{ fontSize: "14px" }}>
+              There is nothing in your cart
+            </span>
+            <Button
+              name="Go to Shopping"
+              className="go-to-shop-btn"
+              onClick={() => navigate("/home")}
+            />
+          </MainDivForEmptyCart>
         )}
       </MainDiv>
     </>
