@@ -9,6 +9,7 @@ import {
 import {
   isAnimationTriggeredReducer,
   errorMessageReducer,
+  numberOfCartItemsReducer,
 } from "./redux/reducer/itemDetailsReducer";
 
 export const rootReducer = combineReducers({
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
   quantitySelectorPopup: quantitySelectorPopupReducer,
   animation: isAnimationTriggeredReducer,
   errMsg: errorMessageReducer,
+  cartItems: numberOfCartItemsReducer,
 });

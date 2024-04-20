@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderLogo from "../../images/trendify-logo.png";
 import { useNavigate } from "react-router-dom";
 import CartIcon from "../../images/cart-icon.png";
@@ -7,7 +7,15 @@ import "./Header.css";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const cartCount = useSelector((state) => state.cart.cartCount);
+  const [dat, setDat] = useState();
+  const mySet = useSelector(
+    (state) => state?.cartItems?.numberOfCartItemsArray
+  );
+
+  useEffect(() => {
+    setDat(mySet);
+  }, [mySet]);
+  const cartCount = JSON.stringify([...mySet].length);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("loginStatus");
@@ -34,7 +42,7 @@ const Header = () => {
           alt="Cart"
           onClick={() => navigate("/checkout")}
         />
-        {cartCount !== 0 && (
+        {mySet.length !== 0 && (
           <span
             className="cart-checkout-items-value"
             onClick={() => navigate("/checkout")}
