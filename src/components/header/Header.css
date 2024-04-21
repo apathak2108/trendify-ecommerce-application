@@ -53,3 +53,28 @@
   text-align: center;
   line-height: 19px;
 }
+
+.navbar-pages {
+  height: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-pages:hover {
+  color: #ff3e6c;
+  border-bottom: 3px solid #ff3e6c;
+}
+
+.on-hover-div {
+  height: 40vh;
+  width: 98vw;
+  margin-left: 12px;
+  position: absolute;
+  border: 1px solid antiquewhite;
+  background-color: #fff;
+
+  animation: 200ms ease-in 0s 1 normal none running fadeIn;
+}
