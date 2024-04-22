@@ -21,12 +21,6 @@ const Header = () => {
   const handleHeaderLogo = () => {
     navigate("/home");
   };
-  const handleHover = () => {
-    setHover(true);
-  };
-  const handleHoverOut = () => {
-    setHover(false);
-  };
 
   return (
     <>
@@ -39,69 +33,7 @@ const Header = () => {
             onClick={handleHeaderLogo}
           ></img>
         </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Women Ethnic
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Women Western
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Men
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Kids
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Home & Kitchen
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Beauty & Health
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Jewellery
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Bags & Footwear
-        </div>
-        <div
-          className="navbar-pages"
-          onMouseOver={handleHover}
-          onMouseOut={handleHoverOut}
-        >
-          Electronics
-        </div>
+
         <div className="header-right-portion">
           <img
             src={CartIcon}
@@ -124,11 +56,7 @@ const Header = () => {
           />
         </div>
       </div>
-      {hover && (
-        <div className="on-hover-div">
-          <h1>Aur Baua</h1>
-        </div>
-      )}
+      
     </>
   );
 };
