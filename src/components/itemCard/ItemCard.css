@@ -48,6 +48,8 @@
 
 .item-info-price {
   line-height: 26px;
+  display: flex;
+  flex-flow: wrap;
 }
 
 .item-info-price-discounted-price {
@@ -70,4 +72,3 @@
   font-size: 12px;
   margin-left: 5px;
 }
-

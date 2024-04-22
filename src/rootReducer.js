@@ -11,6 +11,10 @@ import {
   errorMessageReducer,
   numberOfCartItemsReducer,
 } from "./redux/reducer/itemDetailsReducer";
+import {
+  setNavbarHitReducer,
+  fetchNavbarItemsReducer,
+} from "./redux/reducer/navbarReducer";
 
 export const rootReducer = combineReducers({
   cart: cartItemsReducer,
@@ -21,4 +25,6 @@ export const rootReducer = combineReducers({
   animation: isAnimationTriggeredReducer,
   errMsg: errorMessageReducer,
   cartItems: numberOfCartItemsReducer,
+  navbarHit: setNavbarHitReducer,
+  navbarItems: fetchNavbarItemsReducer,
 });

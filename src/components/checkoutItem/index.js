@@ -24,6 +24,7 @@ import CloseIcon from "../../images/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmptyCartImage from "../../images/emptyCartImg.png";
+import Navbar from "../navbar";
 
 const QuantitySelector = ({ onSelectQuantity }) => {
   const selectQuantity = (quantity) => {
@@ -92,6 +93,7 @@ const CheckoutItem = () => {
   return (
     <>
       <Header />
+      <Navbar />
       <MainDiv>
         <CardContainerDiv>
           {mySetArray.map((index) => (

@@ -5,7 +5,8 @@ import Header from "../header";
 import Button from "../button";
 import { useNavigate } from "react-router-dom";
 import { items } from "../../pages/itemList/itemsData";
-import { addItem, setSelectedSize } from "../../redux/action/cartAction";
+import { setSelectedSize } from "../../redux/action/cartAction";
+import Navbar from "../navbar";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setIsAnimationTriggered,
@@ -44,6 +45,7 @@ const ItemDetails = () => {
   return (
     <>
       <Header />
+      <Navbar />
       <div className="product-image-and-description-container">
         <div className="product-image-container">
           <img className="product-image" src={selectedItem.imageURL} />
