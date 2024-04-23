@@ -191,7 +191,7 @@ const CheckoutItem = () => {
         {!mySetArrayState && (
           <MainDivForEmptyCart>
             <img src={EmptyCartImage} style={{ height: "100%" }}></img>
-            <h3 style={{ marginBottom: "5px" }}>Hey, it feels so light!</h3>
+            <h3 style={{ marginTop: "0", marginBottom: "5px" }}>Hey, it feels so light!</h3>
             <span style={{ fontSize: "14px" }}>
               There is nothing in your cart
             </span>
