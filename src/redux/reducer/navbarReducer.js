@@ -1,14 +1,11 @@
 import {
-  FETCH_LEVEL_ONE_DATA,
-  FETCH_LEVEL_TWO_DATA,
   IS_NAVBAR_HIT,
+  INITIALIZE_LEVEL1_DATA,
 } from "../action/actionTypes";
 
 const initialState = {
   isNavbarHit: false,
   level1Data: [],
-  level2Data: [],
-  level3Data: [],
 };
 
 export const setNavbarHitReducer = (state = initialState, action) => {
@@ -23,19 +20,15 @@ export const setNavbarHitReducer = (state = initialState, action) => {
   }
 };
 
-export const fetchNavbarItemsReducer = (state = initialState, action) => {
+export const navbarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_LEVEL_ONE_DATA:
+    case INITIALIZE_LEVEL1_DATA:
       return {
         ...state,
         level1Data: action.payload,
-      };
-    case FETCH_LEVEL_TWO_DATA:
-      return {
-        ...state,
-        level2Data: action.payload,
       };
     default:
       return state;
   }
 };
+

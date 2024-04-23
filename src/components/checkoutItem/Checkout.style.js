@@ -10,7 +10,7 @@ export const MainDiv = styled.div`
 
 export const MainDivForEmptyCart = styled.div`
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 270px;

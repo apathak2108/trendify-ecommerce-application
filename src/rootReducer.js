@@ -13,7 +13,7 @@ import {
 } from "./redux/reducer/itemDetailsReducer";
 import {
   setNavbarHitReducer,
-  fetchNavbarItemsReducer,
+  navbarReducer,
 } from "./redux/reducer/navbarReducer";
 
 export const rootReducer = combineReducers({
@@ -26,5 +26,5 @@ export const rootReducer = combineReducers({
   errMsg: errorMessageReducer,
   cartItems: numberOfCartItemsReducer,
   navbarHit: setNavbarHitReducer,
-  navbarItems: fetchNavbarItemsReducer,
+  navbarData: navbarReducer,
 });
