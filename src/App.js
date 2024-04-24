@@ -43,7 +43,7 @@ const App = () => {
               loginStatus ? <ItemDetails /> : <Navigate to="/auth/login" />
             }
           />
-          <Route path="/checkout" element={<CheckoutItem />} />
+          <Route path="/checkout" element={loginStatus ? <CheckoutItem /> : <Navigate to="/auth/login" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
