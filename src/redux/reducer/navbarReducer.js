@@ -1,7 +1,4 @@
-import {
-  IS_NAVBAR_HIT,
-  INITIALIZE_LEVEL1_DATA,
-} from "../action/actionTypes";
+import { IS_NAVBAR_HIT, INITIALIZE_LEVEL1_DATA } from "../action/actionTypes";
 
 const initialState = {
   isNavbarHit: false,
@@ -13,7 +10,7 @@ export const setNavbarHitReducer = (state = initialState, action) => {
     case IS_NAVBAR_HIT:
       return {
         ...state,
-        isNavbarHit: !state.isNavbarHit,
+        isNavbarHit: action.payload,
       };
     default:
       return state;
@@ -31,4 +28,3 @@ export const navbarReducer = (state = initialState, action) => {
       return state;
   }
 };
-

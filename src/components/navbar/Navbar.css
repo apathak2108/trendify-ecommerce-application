@@ -23,7 +23,7 @@ span {
 }
 
 .navbar-item:hover {
-  border-bottom: 3px solid #ff3f6c;
+  border-bottom: 4px solid #ff3f6c;
   color: #ff3f6c;
 }
 
@@ -33,6 +33,7 @@ span {
   position: absolute;
   border: 1px solid lightgray;
   background-color: #fff;
+  z-index: 1;
 }
 
 .category-main-card {
