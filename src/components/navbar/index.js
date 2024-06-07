@@ -48,6 +48,7 @@ const Navbar = () => {
       {isNavbarHit && (
         <div
           className="on-hover-navbar-div"
+          // onMouseEnter={() => dispatch(setNavbarHit(true))}
         >
           <div className="category-main-card">
             {level2dataOfHoveredIndex?.map((level2Item, level2Index) => (
@@ -75,5 +76,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// {level3dataOfHoveredIndex[index]?.title}

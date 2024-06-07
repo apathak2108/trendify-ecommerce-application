@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MainDiv,
   CardContainerDiv,
@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EmptyCartImage from "../../images/emptyCartImg.png";
 import Navbar from "../navbar";
+import { items } from "../../pages/itemList/itemsData";
 
 const QuantitySelector = ({ onSelectQuantity }) => {
   const selectQuantity = (quantity) => {
@@ -57,20 +58,22 @@ const QuantitySelector = ({ onSelectQuantity }) => {
 };
 
 const CheckoutItem = () => {
+  const [indexToDelete, setIndexToDelete] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const mySet = useSelector(
     (state) => state?.cartItems?.numberOfCartItemsArray
   );
-  const mySetArray = [...mySet];
+  const selectedItems = [...mySet];
   const mySetArrayStateFun = () => {
-    if (mySetArray.length > 0) {
+    if (selectedItems.length > 0) {
       return true;
     }
     return false;
   };
-  let mySetArrayState = mySetArrayStateFun();
+  console.log(selectedItems, "selectedItems")
 
+  let mySetArrayState = mySetArrayStateFun();
   const openDeleteItemPopup = useSelector(
     (state) => state?.deleteItemPopup?.isDeleteCartItemPopup
   );
@@ -85,86 +88,104 @@ const CheckoutItem = () => {
     dispatch(showQuantitySelectorPopup());
   };
 
-  const handleSelectQuantity = (quantity) => {
-    dispatch(setSelectedQuantityOfItem(quantity));
+  const handleSelectQuantity = (ItemId, quantity) => {
+    dispatch(setSelectedQuantityOfItem(ItemId, quantity));
     toggleQuantitySelector();
   };
+  const handleDeleteCartItem = (index) => {
+    dispatch(handleDeleteCartItemPopup());
+    setIndexToDelete(index);
+  };
 
+  const deleteSelectedCartItem = () => {
+    // const updatedItems
+    selectedItems.splice(indexToDelete, 1)
+    dispatch(handleDeleteCartItemPopup());
+  } 
+
+  console.log(indexToDelete, "indexToDelete");
   return (
     <>
       <Header />
       <Navbar />
       <MainDiv>
         <CardContainerDiv>
-          {mySetArray.map((index) => (
-            <CheckoutCardDiv key={index}>
-              <ImageDiv>
-                <img
-                  src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/23158876/2023/10/4/ba6838bf-93c1-47d0-8948-790b3727f5711696415342531-anayna--Anarkali-Pure-Cotton-Kurta-With-Trousers--Dupatta-45-12.jpg"
-                  style={{ height: "100%", width: "100%" }}
-                />
-              </ImageDiv>
-              <ItemDescriptionDiv>
-                <h3 style={{ marginTop: "5px", marginBottom: "8px" }}>
-                  KALANI
-                </h3>
-                <span>Kurta With Duppatta and Lehanga</span>
-                <span
-                  style={{
-                    marginTop: "5px",
-                    fontSize: "12px",
-                    color: "#94969f",
-                  }}
-                >
-                  Sold by Truenet Commerce
-                </span>
-                <CheckoutCardButtonsDiv>
-                  <Button
-                    name={`Qty: ${selectedQuantity} ▼`}
-                    onClick={toggleQuantitySelector}
+          {selectedItems.map((itemId, index) => {
+            const selectedItem = items.find((item) => item.itemID === itemId);
+            return (
+              <CheckoutCardDiv key={index}>
+                <ImageDiv>
+                  <img
+                    src={selectedItem.imageURL}
+                    style={{ height: "100%", width: "100%" }}
                   />
-                  <span style={{ marginLeft: "10px" }}>
-                    Size: {selectedSize}
-                  </span>
-                </CheckoutCardButtonsDiv>
-                <div
-                  className="product-price-container"
-                  style={{ marginBottom: "8px" }}
-                >
-                  <strong style={{ fontSize: "19px", marginLeft: "0" }}>
-                    ₹ 2500
-                  </strong>
-                  <span className="original-price" style={{ fontSize: "17px" }}>
-                    MRP <s>₹ 5000</s>
-                  </span>
+                </ImageDiv>
+                <ItemDescriptionDiv>
+                  <h3 style={{ marginTop: "5px", marginBottom: "8px" }}>
+                    {selectedItem.productName}
+                  </h3>
+                  <span>{selectedItem.productDescription}</span>
                   <span
-                    className="discounted-percentage"
-                    style={{ fontSize: "17px" }}
+                    style={{
+                      marginTop: "5px",
+                      fontSize: "12px",
+                      color: "#94969f",
+                    }}
                   >
-                    (50% OFF)
+                    Sold by Truenet Commerce
                   </span>
-                </div>
-                <span style={{ fontSize: "14px" }}>
-                  ↩ 14 Days Return Guarantee
-                </span>
-              </ItemDescriptionDiv>
-              <img
-                src={CloseIcon}
-                style={{
-                  height: "15px",
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  cursor: "pointer",
-                }}
-                onClick={() => dispatch(handleDeleteCartItemPopup())}
-              />
-            </CheckoutCardDiv>
-          ))}
+                  <CheckoutCardButtonsDiv>
+                    <Button
+                      name={`Qty: ${selectedQuantity} ▼`}
+                      onClick={toggleQuantitySelector}
+                    />
+                    <span style={{ marginLeft: "10px" }}>
+                      Size: {selectedSize}
+                    </span>
+                  </CheckoutCardButtonsDiv>
+                  <div
+                    className="product-price-container"
+                    style={{ marginBottom: "8px" }}
+                  >
+                    <strong style={{ fontSize: "19px", marginLeft: "0" }}>
+                      ₹ {selectedItem.discountedPrice}
+                    </strong>
+                    <span
+                      className="original-price"
+                      style={{ fontSize: "17px" }}
+                    >
+                      MRP <s>₹ {selectedItem.originalPrice}</s>
+                    </span>
+                    <span
+                      className="discounted-percentage"
+                      style={{ fontSize: "17px" }}
+                    >
+                      ({selectedItem.discountedPercentage}% OFF)
+                    </span>
+                  </div>
+                  <span style={{ fontSize: "14px" }}>
+                    ↩ 14 Days Return Guarantee
+                  </span>
+                </ItemDescriptionDiv>
+                <img
+                  src={CloseIcon}
+                  style={{
+                    height: "15px",
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    cursor: "pointer",
+                  }}
+                  // onClick={() => )}
+                  onClick={() => handleDeleteCartItem(index)}
+                />
+              </CheckoutCardDiv>
+            );
+          })}
         </CardContainerDiv>
         {showQuantitySelector && (
           <ShowQuantitySelectorDiv>
-            <QuantitySelector onSelectQuantity={handleSelectQuantity} />
+            <QuantitySelector onSelectQuantity={() => handleSelectQuantity()} />
           </ShowQuantitySelectorDiv>
         )}
         {openDeleteItemPopup && (
@@ -177,7 +198,8 @@ const CheckoutItem = () => {
               <Button
                 name="Yes, Remove it"
                 className="remove-yes-btn"
-                onClick={() => dispatch(handleDeleteCartItemPopup())}
+                onClick={deleteSelectedCartItem}
+                // onClick={handleDeleteCartItem}
               />
               <span className="vertial-line-bw-btn">|</span>
               <Button
@@ -191,7 +213,9 @@ const CheckoutItem = () => {
         {!mySetArrayState && (
           <MainDivForEmptyCart>
             <img src={EmptyCartImage} style={{ height: "100%" }}></img>
-            <h3 style={{ marginTop: "0", marginBottom: "5px" }}>Hey, it feels so light!</h3>
+            <h3 style={{ marginTop: "0", marginBottom: "5px" }}>
+              Hey, it feels so light!
+            </h3>
             <span style={{ fontSize: "14px" }}>
               There is nothing in your cart
             </span>

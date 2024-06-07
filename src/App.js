@@ -31,19 +31,11 @@ const App = () => {
               )
             }
           />
-          <Route
-            path="/home"
-            element={loginStatus ? <Home /> : <Navigate to="/auth/login" />}
-          />
+          <Route path="/home" element={<Home />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
-          <Route
-            path="/items/:itemID"
-            element={
-              loginStatus ? <ItemDetails /> : <Navigate to="/auth/login" />
-            }
-          />
-          <Route path="/checkout" element={loginStatus ? <CheckoutItem /> : <Navigate to="/auth/login" />} />
+          <Route path="/items/:itemID" element={<ItemDetails />} />
+          <Route path="/checkout" element={<CheckoutItem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
