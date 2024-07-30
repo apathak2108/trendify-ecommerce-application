@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+**Screenshots of Web View**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Web View Screenshot](https://i.postimg.cc/pXwyw0Cm/Trendify-2.png)
 
-## Available Scripts
+![Web View Screenshot](https://i.postimg.cc/2jX1wjBF/Trendify-1.png)
 
-In the project directory, you can run:
+## To run the project on your machine, follow the given steps:-
 
-### `npm start`
+1. **Install Git**: Ensure that Git is installed on your machine. If not, do it by the following link:
+   https://git-scm.com/downloads
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Open a Terminal or Command Prompt**: Access your terminal (macOS/Linux) or command prompt (Windows). You can also use Git Bash if you’re on Windows.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Navigate to the Desired Directory**: Change to the directory where you want to clone the repository. Use the "cd" command to navigate. For example:
 
-### `npm test`
+```bash
+cd path/to/your/directory
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Clone the Repository**: Use the `git clone` command followed by the given repository URL:
+   https://github.com/apathak2108/shoonya-life-frontend-assignment.git
 
-### `npm run build`
+5. **Enter the Project Directory**: After cloning, navigate into the cloned repository's directory by entering given command:
+   cd your-repo-name
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running the Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After cloning the repository, follow these steps to set up and run the React project locally:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+7. **Start the Development Server**: Run the following command to start the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Now the project will run on http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Additional Information
 
-## Learn More
+**Project's Folder Structure**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Project Screenshot](https://i.postimg.cc/Dw2hqMVK/folder-Structure.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Styling
 
-### Code Splitting
+This project uses a combination of styling methods:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Styled-Components**: I have used [styled-components](https://styled-components.com/) for component-level styling. It allows writing CSS in JavaScript and ensures styles are scoped to components.
 
-### Analyzing the Bundle Size
+- **Vanilla CSS**: Some global styles and layout-related CSS are written using traditional CSS. This is used for styles that apply across multiple components or for legacy styles.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Custom Theme**: A custom theme is implemented to manage styles centrally. Modify the theme in the `src/styles/theme.js` file.
 
-### Making a Progressive Web App
+### State Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Redux**: The application uses [Redux](https://redux.js.org/) for state management. Redux is set up in the `src/store` directory, with reducers combined in `rootReducer.js`.
 
-### Advanced Configuration
+- **Actions and Reducers**: Defined in the `src/redux` directory. Each module has its own slice.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Usage**: Components use `useDispatch` and `useSelector` hooks from `react-redux`.
