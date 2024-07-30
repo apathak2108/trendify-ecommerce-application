@@ -21,7 +21,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               loginStatus ? (
@@ -30,7 +30,7 @@ const App = () => {
                 <Navigate to="/auth/login" />
               )
             }
-          />
+          /> */}
           <Route path="/home" element={<Home />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
