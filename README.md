@@ -43,10 +43,6 @@ Now the project will run on http://localhost:3000
 
 ## Additional Information
 
-**Project's Folder Structure**
-
-![Project Screenshot](https://i.postimg.cc/Dw2hqMVK/folder-Structure.png)
-
 ### Styling
 
 This project uses a combination of styling methods:
